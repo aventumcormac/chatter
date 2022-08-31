@@ -3,8 +3,9 @@
   <p>
     <%= post.content %>
   </p>
+
   <span class="mx-3">
-    Last Comment 3 days ago.
+    Last Comment <%= time_ago_in_words(post.comments.last.updated_at) if post.comments.present? %> ago.
   </span>
   <span>
     <%= link_to "Edit", edit_group_post_path(post.group, post), class: "text-blue-600" %>
