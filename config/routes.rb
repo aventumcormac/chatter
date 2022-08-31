@@ -3,14 +3,6 @@
 # == Route Map
 #
 #                                   Prefix Verb   URI Pattern                                                                                       Controller#Action
-#                                    posts GET    /posts(.:format)                                                                                  posts#index
-#                                          POST   /posts(.:format)                                                                                  posts#create
-#                                 new_post GET    /posts/new(.:format)                                                                              posts#new
-#                                edit_post GET    /posts/:id/edit(.:format)                                                                         posts#edit
-#                                     post GET    /posts/:id(.:format)                                                                              posts#show
-#                                          PATCH  /posts/:id(.:format)                                                                              posts#update
-#                                          PUT    /posts/:id(.:format)                                                                              posts#update
-#                                          DELETE /posts/:id(.:format)                                                                              posts#destroy
 #                         new_user_session GET    /login(.:format)                                                                                  users/sessions#new
 #                             user_session POST   /login(.:format)                                                                                  users/sessions#create
 #                     destroy_user_session DELETE /logout(.:format)                                                                                 users/sessions#destroy
@@ -32,6 +24,14 @@
 #                                     root GET    /                                                                                                 groups#index
 #                               join_group POST   /groups/:id/join(.:format)                                                                        groups#join
 #                              leave_group DELETE /groups/:id/leave(.:format)                                                                       groups#leave
+#                              group_posts GET    /groups/:group_id/posts(.:format)                                                                 posts#index
+#                                          POST   /groups/:group_id/posts(.:format)                                                                 posts#create
+#                           new_group_post GET    /groups/:group_id/posts/new(.:format)                                                             posts#new
+#                          edit_group_post GET    /groups/:group_id/posts/:id/edit(.:format)                                                        posts#edit
+#                               group_post GET    /groups/:group_id/posts/:id(.:format)                                                             posts#show
+#                                          PATCH  /groups/:group_id/posts/:id(.:format)                                                             posts#update
+#                                          PUT    /groups/:group_id/posts/:id(.:format)                                                             posts#update
+#                                          DELETE /groups/:group_id/posts/:id(.:format)                                                             posts#destroy
 #                                   groups GET    /groups(.:format)                                                                                 groups#index
 #                                          POST   /groups(.:format)                                                                                 groups#create
 #                                new_group GET    /groups/new(.:format)                                                                             groups#new
@@ -95,6 +95,6 @@ Rails.application.routes.draw do
       post :join
       delete :leave
     end
+    resources :posts
   end
-  resources :posts
 end
