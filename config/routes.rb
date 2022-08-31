@@ -3,6 +3,14 @@
 # == Route Map
 #
 #                                   Prefix Verb   URI Pattern                                                                                       Controller#Action
+#                                    posts GET    /posts(.:format)                                                                                  posts#index
+#                                          POST   /posts(.:format)                                                                                  posts#create
+#                                 new_post GET    /posts/new(.:format)                                                                              posts#new
+#                                edit_post GET    /posts/:id/edit(.:format)                                                                         posts#edit
+#                                     post GET    /posts/:id(.:format)                                                                              posts#show
+#                                          PATCH  /posts/:id(.:format)                                                                              posts#update
+#                                          PUT    /posts/:id(.:format)                                                                              posts#update
+#                                          DELETE /posts/:id(.:format)                                                                              posts#destroy
 #                         new_user_session GET    /login(.:format)                                                                                  users/sessions#new
 #                             user_session POST   /login(.:format)                                                                                  users/sessions#create
 #                     destroy_user_session DELETE /logout(.:format)                                                                                 users/sessions#destroy
@@ -88,4 +96,5 @@ Rails.application.routes.draw do
       delete :leave
     end
   end
+  resources :posts
 end
