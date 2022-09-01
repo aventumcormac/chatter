@@ -2,7 +2,7 @@
   <%= tag.div data: { controller: "turbo-modal",
                       turbo_modal_target: "modal",
                       action: "turbo:submit-end->turbo-modal#submitEnd keyup@window->turbo-modal#closeWithKeyboard click@window->turbo-modal#closeBackground" },
-                      class: "animated fadeIn fixed inset-0 overflow-y-auto flex items-center justify-center" do %>
+                      class: "bg-slate-300 bg-opacity-50 z-10 animated fadeIn fixed inset-0 overflow-y-auto flex items-center justify-center" do %>
       <div class="max-w-lg max-h-screen w-full relative">
         <div class="m-1 bg-white rounded shadow">
           <div class="px-4 py-12 border border-gray-200 sm:px-6">
