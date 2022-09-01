@@ -22,6 +22,23 @@
 #                              user_unlock GET    /unblock(.:format)                                                                                users/unlocks#show
 #                                          POST   /unblock(.:format)                                                                                users/unlocks#create
 #                                     root GET    /                                                                                                 groups#index
+#                               join_group POST   /groups/:id/join(.:format)                                                                        groups#join
+#                              leave_group DELETE /groups/:id/leave(.:format)                                                                       groups#leave
+#                      group_post_comments GET    /groups/:group_id/posts/:post_id/comments(.:format)                                               comments#index
+#                                          POST   /groups/:group_id/posts/:post_id/comments(.:format)                                               comments#create
+#                   new_group_post_comment GET    /groups/:group_id/posts/:post_id/comments/new(.:format)                                           comments#new
+#                  edit_group_post_comment GET    /groups/:group_id/posts/:post_id/comments/:id/edit(.:format)                                      comments#edit
+#                       group_post_comment PATCH  /groups/:group_id/posts/:post_id/comments/:id(.:format)                                           comments#update
+#                                          PUT    /groups/:group_id/posts/:post_id/comments/:id(.:format)                                           comments#update
+#                                          DELETE /groups/:group_id/posts/:post_id/comments/:id(.:format)                                           comments#destroy
+#                              group_posts GET    /groups/:group_id/posts(.:format)                                                                 posts#index
+#                                          POST   /groups/:group_id/posts(.:format)                                                                 posts#create
+#                           new_group_post GET    /groups/:group_id/posts/new(.:format)                                                             posts#new
+#                          edit_group_post GET    /groups/:group_id/posts/:id/edit(.:format)                                                        posts#edit
+#                               group_post GET    /groups/:group_id/posts/:id(.:format)                                                             posts#show
+#                                          PATCH  /groups/:group_id/posts/:id(.:format)                                                             posts#update
+#                                          PUT    /groups/:group_id/posts/:id(.:format)                                                             posts#update
+#                                          DELETE /groups/:group_id/posts/:id(.:format)                                                             posts#destroy
 #                                   groups GET    /groups(.:format)                                                                                 groups#index
 #                                          POST   /groups(.:format)                                                                                 groups#create
 #                                new_group GET    /groups/new(.:format)                                                                             groups#new
@@ -80,5 +97,13 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root to: 'groups#index'
-  resources :groups
+  resources :groups do
+    member do
+      post :join
+      delete :leave
+    end
+    resources :posts do
+      resources :comments, except: [:show]
+    end
+  end
 end
